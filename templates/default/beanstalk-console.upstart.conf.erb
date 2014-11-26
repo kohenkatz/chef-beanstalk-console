@@ -1,0 +1,15 @@
+#!upstart
+description "Beanstalk Console"
+
+start on startup
+stop on shutdown
+
+chdir <%= File.join(node['beanstalk_console']['install_path'],'public') %>
+
+<%
+cmd = node['beanstalk_console']['php_server_cmd']
+ip = node['beanstalk_console']['bind_ip']
+port = node['beanstalk_console']['bind_port']
+-%>
+
+exec <%= sprintf(cmd, {:ip => ip, :port => port}) %><%= " >> #{node['beanstalk_console']['log_file']}" unless node['beanstalk_console']['log_file'].empty? %>
