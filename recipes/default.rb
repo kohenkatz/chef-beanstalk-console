@@ -55,6 +55,12 @@ file log_file do
   action :create_if_missing
 end
 
+config_file = File.join(node['beanstalk_console']['install_path'], 'config.php')
+template config_file do
+  source "config.php.erb"
+  mode 0644
+end
+
 template "/etc/init/beanstalk-console.conf" do
   source "beanstalk-console.upstart.conf.erb"
   mode 0644

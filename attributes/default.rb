@@ -13,3 +13,7 @@ default['beanstalk_console']['bind_ip'] = '0.0.0.0'
 default['beanstalk_console']['bind_port'] = '7654'
 
 default['beanstalk_console']['log_file'] = '/var/log/beanstalk_console.log'
+
+default['beanstalk_console']['servers'] = [
+  'localhost:11300'
+]
