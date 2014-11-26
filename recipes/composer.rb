@@ -28,4 +28,5 @@ php_composer node['beanstalk_console']['install_path'] do
   project 'ptrofimov/beanstalk_console'
   stability :dev
   action [:install_composer, :create_project]
+  not_if { File.exist? File.join(node['beanstalk_console']['install_path'], 'composer.json') }
 end
